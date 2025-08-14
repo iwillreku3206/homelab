@@ -1,8 +1,6 @@
 version: "3.9"
 
 networks:
-  apps:
-    external: true
   dns:
     external: true
 
@@ -24,8 +22,6 @@ services:
     networks:
       dns:
         ipv4_address: 172.32.1.254
-      apps:
-        ipv4_address: 172.128.0.2
     deploy:
       placement:
         constraints:
