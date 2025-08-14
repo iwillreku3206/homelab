@@ -24,6 +24,7 @@ services:
     networks:
       dns:
         ipv4_address: 172.32.1.254
-    deploy: placement:
+    deploy: 
+      placement:
         constraints:
           - node.hostname == ${CORE_HOSTNAME}
