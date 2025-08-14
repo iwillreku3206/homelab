@@ -10,7 +10,7 @@ services:
     image: pihole/pihole:latest
     hostname: pihole
     ports:
-      - '81:80'
+      - 172.17.0.1:81:80
     environment:
       TZ: 'Asia/Manila'
       FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
