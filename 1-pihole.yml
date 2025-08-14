@@ -1,0 +1,24 @@
+version: "3.9"
+
+networks:
+  dns:
+    external: true
+
+services:
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    environment:
+      TZ: 'Asia/Manila'
+      FTLCONF_webserver_api_password: 'correct horse battery staple'
+      # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
+      FTLCONF_dns_listeningMde: 'all'
+    # Volumes store your data between container upgrades
+    volumes:
+      - '${BASE_FAST_DIR}/pihole:/etc/pihole'
+    cap_add:
+      - SYS_NICE
+    restart: unless-stopped
+    networks:
+      dns:
+        ipv4_address: 172.32.1.254
