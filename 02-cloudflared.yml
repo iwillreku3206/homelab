@@ -10,8 +10,7 @@ services:
     command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
     restart: unless-stopped
     networks:
-      apps:
-        ipv4_address: 172.128.255.254
+      - apps
     deploy:
       placement:
         constraints:
