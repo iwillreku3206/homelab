@@ -1,7 +1,6 @@
 ---
 
 services:
-  postgresql:
   server:
     image: ghcr.io/goauthentik/server:2025.6.4
     hostname: authentik-server
