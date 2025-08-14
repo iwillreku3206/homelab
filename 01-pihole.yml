@@ -9,6 +9,8 @@ services:
     container_name: pihole
     image: pihole/pihole:latest
     hostname: pihole
+    ports:
+      - 80:80/tcp
     environment:
       TZ: 'Asia/Manila'
       FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
@@ -22,7 +24,6 @@ services:
     networks:
       dns:
         ipv4_address: 172.32.1.254
-    deploy:
-      placement:
+    deploy: placement:
         constraints:
           - node.hostname == ${CORE_HOSTNAME}
