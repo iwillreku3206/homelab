@@ -28,7 +28,7 @@ services:
     hostname: authentik-worker
     restart: unless-stopped
     command: worker
-    network: 
+    networks: 
       - apps
       - postgres
       - redis
