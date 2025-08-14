@@ -10,7 +10,7 @@ if [ $? -ne 0 ]; then
     --gateway 172.32.1.253 \
     --scope local \
     dns
-done
+fi
 
 # apps network
 docker network inspect apps > /dev/null 2>&1
@@ -22,4 +22,4 @@ if [ $? -ne 0 ]; then
     --gateway 172.128.0.1 \
     --scope swarm \
     apps
-done
+fi
