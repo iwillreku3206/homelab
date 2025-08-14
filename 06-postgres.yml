@@ -12,7 +12,7 @@ services:
     image: postgres:18
     hostname: postgres
     networks:
-      - apps
+      - postgres
     ports:
       - 5432:5432
     environment:
