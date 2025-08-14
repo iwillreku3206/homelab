@@ -15,7 +15,7 @@ echo "Adding networks..."
 ./00-networks.sh
 
 echo "Deploying PiHole..."
-docker compose -d -f 01-pihole.yml up
+docker compose -f 01-pihole.yml up -d
 
 echo "Deploying Cloudflared..."
 docker stack deploy -d -c 02-cloudflared.yml

@@ -9,6 +9,7 @@ if [ $? -ne 0 ]; then
     --subnet 172.32.1.252/30 \
     --gateway 172.32.1.253 \
     --scope local \
+    --attachable \
     dns
 fi
 
@@ -21,5 +22,6 @@ if [ $? -ne 0 ]; then
     --subnet 172.128.0.0/16 \
     --gateway 172.128.0.1 \
     --scope swarm \
+    --attachable \
     apps
 fi
