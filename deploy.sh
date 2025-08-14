@@ -24,4 +24,9 @@ docker compose -f 01-pihole.yml up -d
 echo "Deploying Cloudflared..."
 docker stack deploy -d -c 02-cloudflared.yml cloudflared
 
+echo "Deploying Caddy"
+./03-caddy.sh
+
+docker stack deploy -d -c 03-caddy.yml caddy
+
 rm .env

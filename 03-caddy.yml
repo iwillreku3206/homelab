@@ -1,0 +1,26 @@
+version: "3.9"
+
+networks:
+  apps:
+    external: true
+
+services:
+  caddy:
+    ports:
+      - 80:80
+      - 443:443
+      - 443:443/udp
+    volumes:
+      - ${BASE_FAST_DIR}/caddy:/etc/caddy
+      - caddy_data:/data
+    image: caddy
+    networks:
+      - apps
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == ${CORE_HOSTNAME}
+volumes:
+    caddy_data:
+        external: true
+        name: caddy_data
