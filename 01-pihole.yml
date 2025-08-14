@@ -1,7 +1,5 @@
 version: "3.9"
 
-name: pihole
-
 networks:
   apps:
     external: true
