@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+set -e
 
 read -s -p "Enter ENV Password: " GPG_PASS
 
