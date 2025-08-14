@@ -4,6 +4,10 @@ set -e
 
 read -s -p "Enter ENV Password: " GPG_PASS
 
+set -a
+source .env
+set +a
+
 gpg --batch --yes --decrypt \
     --passphrase "$GPG_PASS" \
     --cipher-algo AES256 \
