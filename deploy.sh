@@ -18,6 +18,6 @@ echo "Deploying PiHole..."
 docker compose -f 01-pihole.yml up -d
 
 echo "Deploying Cloudflared..."
-docker stack deploy -d -c 02-cloudflared.yml
+docker stack deploy -d -c 02-cloudflared.yml cloudflared
 
 rm .env
