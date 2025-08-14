@@ -11,7 +11,7 @@ gpg --batch --yes --decrypt \
     env
 
 ./00-networks.sh
-docker compose -f 01-pihole.yml up
-docker compose -f 02-cloudflared.yml up
+docker stack deploy -d -c 01-pihole.yml up
+docker stack deploy -d -c 02-cloudflared.yml up
 
 rm .env
