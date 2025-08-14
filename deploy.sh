@@ -4,16 +4,15 @@ set -e
 
 read -s -p "Enter ENV Password: " GPG_PASS
 
-set -a
-source .env
-set +a
-
 gpg --batch --yes --decrypt \
     --passphrase "$GPG_PASS" \
     --cipher-algo AES256 \
     -o .env \
     env
 
+set -a
+source .env
+set +a
 
 echo "Adding networks..."
 ./00-networks.sh
