@@ -10,3 +10,11 @@ services:
   cloudflared:
     image: cloudflare/cloudflared:latest
     command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
+    restart: unless-stopped
+    networks:
+      apps:
+        ipv4_address: 172.128.255.254
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == ${CORE_HOSTNAME}
