@@ -8,6 +8,7 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
+    hostname: pihole
     environment:
       TZ: 'Asia/Manila'
       FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}

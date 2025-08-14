@@ -18,6 +18,7 @@ echo "Adding networks..."
 ./00-networks.sh
 
 echo "Deploying PiHole..."
+mkdir -p $BASE_FAST_DIR/pihole
 docker compose -f 01-pihole.yml up -d
 
 echo "Deploying Cloudflared..."
@@ -25,7 +26,11 @@ docker stack deploy -d -c 02-cloudflared.yml cloudflared
 
 echo "Deploying Caddy"
 ./03-caddy.sh
-
 docker stack deploy -d -c 03-caddy.yml caddy
+
+echo "Deploying PostgreSQL"
+mkdir -p $BASE_FAST_DIR/postgres
+docker stack deploy -d -c 06-caddy.yml postgres
+
 
 rm .env

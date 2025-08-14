@@ -1,0 +1,30 @@
+version: "3.9"
+
+networks:
+  postgres:
+    external: true
+
+
+services:
+  postgres:
+    volumes:
+      - ${BASE_FAST_DIR}/postgres:/var/lib/postgresql/18/docker
+    image: postgres:18
+    hostname: postgres
+    networks:
+      - apps
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      PGDATA: /var/lib/postgresql/18/docker  
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d authentik -U postgres"]
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 5s
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == ${CORE_HOSTNAME}

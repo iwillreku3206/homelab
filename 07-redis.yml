@@ -1,0 +1,23 @@
+version: "3.9"
+
+networks:
+  redis:
+    external: true
+
+
+services:
+  redis:
+    image: redis
+    hostname: redis
+    networks:
+      - redis
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep PONG"]
+      start_period: 20s
+      interval: 30s
+      retries: 5
+      timeout: 3s
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == ${CORE_HOSTNAME}

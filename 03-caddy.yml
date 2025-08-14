@@ -12,15 +12,12 @@ services:
       - 443:443/udp
     volumes:
       - ${BASE_FAST_DIR}/caddy:/etc/caddy
-      - caddy_data:/data
+      - ${BASE_FAST_DIR}/caddy_data:/data
     image: caddy
+    hostname: caddy
     networks:
       - apps
     deploy:
       placement:
         constraints:
           - node.hostname == ${CORE_HOSTNAME}
-volumes:
-    caddy_data:
-        external: true
-        name: caddy_data

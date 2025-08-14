@@ -25,3 +25,52 @@ if [ $? -ne 0 ]; then
     --attachable \
     apps
 fi
+
+# mariadb network
+docker network inspect mariadb > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+  docker network create \
+    --driver overlay \
+    --subnet 172.129.0.0/16 \
+    --gateway 172.129.0.1 \
+    --scope swarm \
+    --attachable \
+    mariadb
+fi
+# mongodb network
+docker network inspect mongodb > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+  docker network create \
+    --driver overlay \
+    --subnet 172.130.0.0/16 \
+    --gateway 172.130.0.1 \
+    --scope swarm \
+    --attachable \
+    mongodb
+fi
+# postgres network
+docker network inspect postgres > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+  docker network create \
+    --driver overlay \
+    --subnet 172.131.0.0/16 \
+    --gateway 172.131.0.1 \
+    --scope swarm \
+    --attachable \
+    postgres
+fi
+# redis network
+docker network inspect redis > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+  docker network create \
+    --driver overlay \
+    --subnet 172.132.0.0/16 \
+    --gateway 172.132.0.1 \
+    --scope swarm \
+    --attachable \
+    redis
+fi

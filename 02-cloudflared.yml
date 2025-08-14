@@ -7,6 +7,7 @@ networks:
 services:
   cloudflared:
     image: cloudflare/cloudflared:latest
+    hostname: cloudflared
     command: tunnel --no-autoupdate run --token ${CLOUDFLARED_TOKEN}
     restart: unless-stopped
     networks:
