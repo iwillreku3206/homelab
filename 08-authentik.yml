@@ -5,7 +5,7 @@ services:
     image: ghcr.io/goauthentik/server:2025.6.4
     hostname: authentik-server
     command: server
-    network: 
+    networks: 
       - apps
       - postgres
       - redis
