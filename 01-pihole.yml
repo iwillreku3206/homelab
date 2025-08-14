@@ -19,7 +19,6 @@ services:
       - '${BASE_FAST_DIR}/pihole:/etc/pihole'
     cap_add:
       - SYS_NICE
-    restart: unless-stopped
     networks:
       dns:
         ipv4_address: 172.32.1.254

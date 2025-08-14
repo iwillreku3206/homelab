@@ -4,25 +4,39 @@ services:
   postgresql:
   server:
     image: ghcr.io/goauthentik/server:2025.6.4
+    hostname: authentik-server
     command: server
+    network: 
+      - apps
+      - postgres
+      - redis
     environment:
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY}
-      AUTHENTIK_REDIS__HOST: redis
-      AUTHENTIK_POSTGRESQL__HOST: postgres
+      AUTHENTIK_REDIS__HOST: redis.redis
+      AUTHENTIK_POSTGRESQL__HOST: postgres.postgres
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__NAME: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_PG_PASS}
     volumes:
       - ${BASE_FAST_DIR}/authentik/media:/media
       - ${BASE_FAST_DIR}/authentik/templates:/templates
+    deploy: 
+      placement:
+        constraints:
+          - node.hostname == ${CORE_HOSTNAME}
   worker:
     image: ghcr.io/goauthentik/server:2025.6.4
+    hostname: authentik-worker
     restart: unless-stopped
     command: worker
+    network: 
+      - apps
+      - postgres
+      - redis
     environment:
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
-      AUTHENTIK_REDIS__HOST: redis
-      AUTHENTIK_POSTGRESQL__HOST: postgres
+      AUTHENTIK_REDIS__HOST: redis.redis
+      AUTHENTIK_POSTGRESQL__HOST: postgres.postgres
       AUTHENTIK_POSTGRESQL__USER: authentik
       AUTHENTIK_POSTGRESQL__NAME: authentik
       AUTHENTIK_POSTGRESQL__PASSWORD: ${AUTHENTIK_PG_PASS}
@@ -32,3 +46,7 @@ services:
       - ${BASE_FAST_DIR}/authentik/media:/media
       - ${BASE_FAST_DIR}/authentik/certs:/certs
       - ${BASE_FAST_DIR}/authentik/templates:/templates
+    deploy: 
+      placement:
+        constraints:
+          - node.hostname == ${CORE_HOSTNAME}
