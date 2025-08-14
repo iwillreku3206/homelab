@@ -1,6 +1,10 @@
 version: "3.9"
 
+name: pihole
+
 networks:
+  apps:
+    external: true
   dns:
     external: true
 
@@ -10,7 +14,7 @@ services:
     image: pihole/pihole:latest
     environment:
       TZ: 'Asia/Manila'
-      FTLCONF_webserver_api_password: 'correct horse battery staple'
+      FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
       FTLCONF_dns_listeningMde: 'all'
     # Volumes store your data between container upgrades
@@ -22,3 +26,9 @@ services:
     networks:
       dns:
         ipv4_address: 172.32.1.254
+      apps:
+        ipv4_address: 172.128.0.2
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == ${CORE_HOSTNAME}
