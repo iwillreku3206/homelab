@@ -30,7 +30,15 @@ docker stack deploy -d -c 03-caddy.yml caddy
 
 echo "Deploying PostgreSQL"
 mkdir -p $BASE_FAST_DIR/postgres
-docker stack deploy -d -c 06-caddy.yml postgres
+docker stack deploy -d -c 06-postgres.yml postgres
 
+echo "Deploying Redis"
+docker stack deploy -d -c 07-redis.yml redis
+
+echo "Deploying Authentik"
+mkdir -p $BASE_FAST_DIR/authentik/media
+mkdir $BASE_FAST_DIR/authentik/templates
+mkdir $BASE_FAST_DIR/authentik/certs
+docker stack deploy -d -c 08-authentik.yml authentik
 
 rm .env
