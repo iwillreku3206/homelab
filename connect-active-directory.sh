@@ -17,6 +17,7 @@ source .env
 set +a
 
 echo Writing /etc/resolv.conf
+chattr -i /etc/resolv.conf
 echo "nameserver $CORE_INTERNAL_IP" > /etc/resolv.conf
 echo "search $(echo $AD_REALM | awk '{print tolower($0)}')" >> /etc/resolv.conf
 chattr +i /etc/resolv.conf
