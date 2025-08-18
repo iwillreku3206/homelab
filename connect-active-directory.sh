@@ -2,7 +2,7 @@
 
 set -e
 
-apt-get install -y gpg samba krb5-config krb-user
+apt-get install -y gpg samba krb5-config krb5-user
 
 read -s -p "Enter ENV Password: " GPG_PASS
 
