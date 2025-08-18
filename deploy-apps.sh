@@ -2,6 +2,8 @@
 
 set -e
 
+apt-get install -y gpg
+
 read -s -p "Enter ENV Password: " GPG_PASS
 
 gpg --batch --yes --decrypt \
