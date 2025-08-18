@@ -22,9 +22,7 @@ if [ -z "${POSTGRES_ROOT_PASSWORD}" ]; then
   rm .env
 fi
 
-psql -h $CORE_INTERNAL_IP -p 5432 -U postgres -W < /tmp/postgres.fifo &
-
-echo $POSTGRES_ROOT_PASSWORD > /tmp/postgres.fifo
+PGPASSWORD="$POSTGRES_ROOT_PASSWORD" psql -h $CORE_INTERNAL_IP -p 5432 -U postgres < /tmp/postgres.fifo &
 
 # Create the database
 echo CREATE DATABASE authentik\; > /tmp/postgres.fifo
