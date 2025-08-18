@@ -1,3 +1,7 @@
 http://home2.rinaldolee.com  {
 	reverse_proxy 172.17.0.1:81
 }
+
+http://auth.home2.rinaldolee.com {
+	reverse_proxy authentik-server.apps:9000
+}
