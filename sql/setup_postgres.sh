@@ -42,5 +42,6 @@ echo     GRANT ALL ON TABLES TO authentik\; > /tmp/postgres.fifo
 echo ALTER DEFAULT PRIVILEGES IN SCHEMA public > /tmp/postgres.fifo
 echo     GRANT ALL ON SEQUENCES TO authentik\; > /tmp/postgres.fifo
 echo \\q > /tmp/postgres.fifo
+echo "" > /tmp/postgres.fifo
 
 rm /tmp/postgres.fifo
