@@ -2,12 +2,14 @@ http://home2.rinaldolee.com  {
 	reverse_proxy 172.17.0.1:81
 }
 
-http://auth.home2.rinaldolee.com {
+https://auth.home2.rinaldolee.com {
     encode gzip
 
     header {
         Strict-Transport-Security "max-age=63072000"
     }
+
+    tls internal
 
     reverse_proxy https://authentik-server.apps:9443 {
         transport http {
