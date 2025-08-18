@@ -16,6 +16,8 @@ set -a
 source .env
 set +a
 
+env
+
 echo Writing /etc/resolv.conf
 chattr -i /etc/resolv.conf
 echo "nameserver $CORE_INTERNAL_IP" > /etc/resolv.conf
