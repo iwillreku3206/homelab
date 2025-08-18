@@ -76,7 +76,7 @@ echo Writing to /etc/hosts
 echo "$APPS_INTERNAL_IP $(echo $APPS_HOSTNAME | awk '{print toupper($0)}').$AD_REALM   $(echo $APPS_HOSTNAME | awk '{print toupper($0)}')" >> /etc/hosts
 
 echo Joining domain
-samba-tool domain join $(echo $AD_REALM MEMBER | awk '{print tolower($0)}' -U administrator --password "$AD_ADMIN_PASSWORD"
+samba-tool domain join $(echo $AD_REALM MEMBER | awk '{print tolower($0)}') -U administrator --password "$AD_ADMIN_PASSWORD"
 
 systemctl enable --now smbd
 systemctl enable --now nmbd
