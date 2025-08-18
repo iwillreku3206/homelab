@@ -3,5 +3,23 @@ http://home2.rinaldolee.com  {
 }
 
 http://auth.home2.rinaldolee.com {
-	reverse_proxy authentik-server.apps:9000
+    encode gzip
+
+    header {
+        Strict-Transport-Security "max-age=63072000"
+    }
+
+    reverse_proxy authentik-server.apps:9443 {
+        transport http {
+            tls
+            tls_insecure_skip_verify
+            versions h2c 1.1
+        }
+        header_up X-Forwarded-Proto {scheme}
+        header_up X-Forwarded-For {remote}
+        header_up Host {host}
+        header_up Upgrade {>Upgrade}
+        header_up Connection {>Connection}
+    }
 }
+
