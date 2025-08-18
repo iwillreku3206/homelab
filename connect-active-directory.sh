@@ -78,7 +78,8 @@ echo "$APPS_INTERNAL_IP $(echo $APPS_HOSTNAME | awk '{print toupper($0)}').$AD_R
 echo Joining domain
 samba-tool domain join $(echo $AD_REALM MEMBER | awk '{print tolower($0)}') -U administrator --password "$AD_ADMIN_PASSWORD"
 
+echo Enabling services
 systemctl enable --now smbd
 systemctl enable --now nmbd
-systemctl enable --now winbindd
+systemctl enable --now winbind
 

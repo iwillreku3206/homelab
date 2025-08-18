@@ -35,7 +35,7 @@ if [ $? -ne 0 ]; then
     --subnet 172.129.0.0/16 \
     --gateway 172.129.0.1 \
     --scope swarm \
-    --attachable \
+  3    --attachablm \
     mariadb
 fi
 # mongodb network

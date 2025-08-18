@@ -2,7 +2,7 @@
 
 set -e
 
-apt-get install -y acl attr samba winbind libpam-winbind libnss-winbind krb5-config krb5-user dnsutils python3-setproctitle
+apt-get install -y acl attr gpg samba winbind libpam-winbind libnss-winbind krb5-config krb5-user dnsutils python3-setproctitle
 
 read -s -p "Enter ENV Password: " GPG_PASS
 
@@ -16,6 +16,7 @@ set -a
 source .env
 set +a
 
+rm .env
 
 read -s -p "Enter AD Admin Password: " AD_ADMIN_PASSWORD
 echo
