@@ -37,11 +37,12 @@ echo GRANT ALL PRIVILEGES ON DATABASE authentik TO authentik\; > /tmp/postgres.f
 
 # Grant schema privilages
 
-echo \c authentik >> /tmp/postgres.fifo
+echo \\c authentik >> /tmp/postgres.fifo
 echo GRANT ALL ON SCHEMA public TO authentik\; > /tmp/postgres.fifo
 echo ALTER DEFAULT PRIVILEGES IN SCHEMA public > /tmp/postgres.fifo
 echo     GRANT ALL ON TABLES TO authentik\; > /tmp/postgres.fifo
 echo ALTER DEFAULT PRIVILEGES IN SCHEMA public > /tmp/postgres.fifo
 echo     GRANT ALL ON SEQUENCES TO authentik\; > /tmp/postgres.fifo
+echo \\q > /tmp/postgres.fifo
 
 rm /tmp/postgres.fifo
