@@ -9,7 +9,7 @@ http://auth.home2.rinaldolee.com {
         Strict-Transport-Security "max-age=63072000"
     }
 
-    reverse_proxy authentik-server.apps:9443 {
+    reverse_proxy https://authentik-server.apps:9443 {
         transport http {
             tls
             tls_insecure_skip_verify
