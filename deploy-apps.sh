@@ -20,5 +20,5 @@ rm .env
 
 echo "Deploying Jellyfin..."
 mkdir -p $BASE_FAST_DIR/jellyfin/config
-docker stack deploy -d -c 08-authentik.yml authentik
+docker stack deploy -d -c 20-jellyfin.yml jellyfin
 
