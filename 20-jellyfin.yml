@@ -29,4 +29,4 @@ services:
     deploy: 
       placement:
         constraints:
-          - node.hostname == ${CORE_HOSTNAME}
+          - node.hostname == ${APPS_HOSTNAME}
