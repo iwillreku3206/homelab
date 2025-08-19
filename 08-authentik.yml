@@ -1,5 +1,3 @@
-
-
 version: "3.9"
 
 networks:
@@ -36,7 +34,6 @@ services:
   worker:
     image: ghcr.io/goauthentik/server:2025.6.4
     hostname: authentik-worker
-    restart: unless-stopped
     command: worker
     networks: 
       - apps

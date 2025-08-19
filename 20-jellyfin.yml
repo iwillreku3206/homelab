@@ -1,0 +1,32 @@
+
+version: "3.9"
+
+networks:
+  apps:
+    external: true
+  redis:
+    external: true
+  postgres:
+    external: true
+
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    hostname: jellyfin
+    networks:
+      - apps
+    user: root
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Manila
+      - JELLYFIN_PublishedServerUrl=${JELLYFIN_PUBLIC_URL} #optional
+    volumes:
+      - ${BASE_FAST_DIR}/jellyfin/config:/config
+      - ${BASE_SLOW_DIR}${MEDIA_TVSHOW_PATH}:/data/tvshows
+      - ${BASE_SLOW_DIR}${MEDIA_MOVIES_PATH}:/data/movies
+      - ${BASE_SLOW_DIR}${MEDIA_MUSIC_PATH}:/data/music
+    deploy: 
+      placement:
+        constraints:
+          - node.hostname == ${CORE_HOSTNAME}

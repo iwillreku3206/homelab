@@ -1,3 +1,7 @@
+{
+	experimental_http3
+}
+
 http://home2.rinaldolee.com  {
 	reverse_proxy 172.17.0.1:81
 }
@@ -21,3 +25,6 @@ auth.home2.rinaldolee.com {
     }
 }
 
+jellyfin.home2.rinaldolee.com {
+    reverse_proxy jellyfin.apps:8096
+}

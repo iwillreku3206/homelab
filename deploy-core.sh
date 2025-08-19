@@ -15,6 +15,7 @@ gpg --batch --yes --decrypt \
 set -a
 source .env
 set +a
+rm .env
 
 echo "Adding networks..."
 ./00-networks.sh
@@ -43,4 +44,3 @@ mkdir -p $BASE_FAST_DIR/authentik/templates
 mkdir -p $BASE_FAST_DIR/authentik/certs
 docker stack deploy -d -c 08-authentik.yml authentik
 
-rm .env
