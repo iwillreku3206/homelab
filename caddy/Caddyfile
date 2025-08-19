@@ -21,7 +21,6 @@ auth.home2.rinaldolee.com {
     }
 }
 
-jellyfin.home2.rinaldolee.com {
-    tls internal
+http://jellyfin.home2.rinaldolee.com {
     reverse_proxy jellyfin.apps:8096
 }
