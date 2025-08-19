@@ -4,10 +4,6 @@ version: "3.9"
 networks:
   apps:
     external: true
-  redis:
-    external: true
-  postgres:
-    external: true
 
 services:
   jellyfin:
