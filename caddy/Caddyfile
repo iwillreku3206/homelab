@@ -1,5 +1,9 @@
 {
-	experimental_http3
+        servers :443 {
+                protocol {
+                        experimental_http3
+                }
+        }
 }
 
 http://home2.rinaldolee.com  {
