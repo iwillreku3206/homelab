@@ -35,7 +35,7 @@ create_database() {
   echo   BEGIN > /tmp/postgres.fifo
   echo      'IF EXISTS (' > /tmp/postgres.fifo
   echo         'SELECT FROM pg_catalog.pg_roles' > /tmp/postgres.fifo
-  echo         "WHERE  rolname = $1) THEN" > /tmp/postgres.fifo
+  echo         "WHERE  rolname = '$1') THEN" > /tmp/postgres.fifo
 
   echo         RAISE NOTICE \'Role \"$1\" already exists. Skipping.\'\; > /tmp/postgres.fifo
   echo      ELSE > /tmp/postgres.fifo
