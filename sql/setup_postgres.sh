@@ -22,40 +22,46 @@ if [ -z "${POSTGRES_ROOT_PASSWORD}" ]; then
   rm .env
 fi
 
-PGPASSWORD="$POSTGRES_ROOT_PASSWORD" psql -h $CORE_INTERNAL_IP -p 5432 -U postgres < /tmp/postgres.fifo &
+PGPASSWORD="$POSTGRES_ROOT_PASSWORD" psql -h $CORE_INTERNAL_IP -p 5432 -U postgres < /tmp/postgres.fifo | (echo -n '<<' && cat) &
 
 # $1: name
 # $2: password
+
+send_sql() {
+  echo $1
+  echo $1 > /tmp/postgres.fifo
+}
+
 create_database() {
-  echo SELECT \'CREATE DATABASE $1\' > /tmp/postgres.fifo
-  echo  WHERE NOT EXISTS \(SELECT FROM pg_database WHERE datname = \'$1\'\)\gexec
+  send_sql "SELECT 'CREATE DATABASE $1'"
+  send_sql "WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = '$1')\gexec"
 
-  echo DO > /tmp/postgres.fifo
-  echo   '$do$' > /tmp/postgres.fifo
-  echo   BEGIN > /tmp/postgres.fifo
-  echo      'IF EXISTS (' > /tmp/postgres.fifo
-  echo         'SELECT FROM pg_catalog.pg_roles' > /tmp/postgres.fifo
-  echo         "WHERE  rolname = '$1') THEN" > /tmp/postgres.fifo
+  send_sql "DO"
+  send_sql   "\$do$"
+  send_sql   "BEGIN"
+  send_sql      "IF EXISTS ("
+  send_sql         "SELECT FROM pg_catalog.pg_roles"
+  send_sql         "WHERE  rolname = '$1') THEN"
 
-  echo         RAISE NOTICE \'Role \"$1\" already exists. Skipping.\'\; > /tmp/postgres.fifo
-  echo      ELSE > /tmp/postgres.fifo
-  echo         BEGIN   -- nested block > /tmp/postgres.fifo
-  echo            CREATE ROLE $1 LOGIN PASSWORD \'"$2"\'\; > /tmp/postgres.fifo
-  echo         EXCEPTION > /tmp/postgres.fifo
-  echo            WHEN duplicate_object THEN > /tmp/postgres.fifo
-  echo               RAISE NOTICE \'Role \"$1\" was just created by a concurrent transaction. Skipping.\'\; > /tmp/postgres.fifo
-  echo         END\; > /tmp/postgres.fifo
-  echo      END IF\; > /tmp/postgres.fifo
-  echo   END > /tmp/postgres.fifo
-  echo   '$do$;' > /tmp/postgres.fifo
+  send_sql         "RAISE NOTICE 'Role \"$1\" already exists. Skipping.';"
+  send_sql      "ELSE"
+  send_sql         "BEGIN" 
+  send_sql            "CREATE ROLE $1 LOGIN PASSWORD '$2';"
+  send_sql         "EXCEPTION"
+  send_sql            "WHEN duplicate_object THEN"
+  send_sql               "RAISE NOTICE 'Role \"$1\" was just created by a concurrent transaction. Skipping.';"
+  send_sql         "END;"
+  send_sql      "END IF;"
+  send_sql   "END"
+  send_sql   "\$do$;"
 
-  echo GRANT ALL PRIVILEGES ON DATABASE $1 TO $1\; > /tmp/postgres.fifo
-  echo \\c $1 >> /tmp/postgres.fifo
-  echo GRANT ALL ON SCHEMA public TO $1\; > /tmp/postgres.fifo
-  echo ALTER DEFAULT PRIVILEGES IN SCHEMA public > /tmp/postgres.fifo
-  echo     GRANT ALL ON TABLES TO $1\; > /tmp/postgres.fifo
-  echo ALTER DEFAULT PRIVILEGES IN SCHEMA public > /tmp/postgres.fifo
-  echo     GRANT ALL ON SEQUENCES TO $1\; > /tmp/postgres.fifo
+  send_sql "GRANT ALL PRIVILEGES ON DATABASE $1 TO $1;"
+  send_sql "\c $1"
+  send_sql "GRANT ALL ON SCHEMA public TO $1;"
+  send_sql "ALTER DEFAULT PRIVILEGES IN SCHEMA public"
+  send_sql     "GRANT ALL ON TABLES TO $1;"
+  send_sql "ALTER DEFAULT PRIVILEGES IN SCHEMA public"
+  send_sql     "GRANT ALL ON SEQUENCES TO $1;"
 }
 
 create_database "authentik" "$AUTHENTIK_PG_PASS"
