@@ -54,7 +54,7 @@ lidarr.home2.rinaldolee.com {
 
 prowlarr.home2.rinaldolee.com {
     tls internal
-    reverse_proxy lidarr.apps:9696
+    reverse_proxy prowlarr.apps:9696
 }
 
 bazarr.home2.rinaldolee.com {
