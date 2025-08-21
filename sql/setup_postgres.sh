@@ -57,12 +57,13 @@ create_database() {
   echo     GRANT ALL ON TABLES TO $1\; > /tmp/postgres.fifo
   echo ALTER DEFAULT PRIVILEGES IN SCHEMA public > /tmp/postgres.fifo
   echo     GRANT ALL ON SEQUENCES TO $1\; > /tmp/postgres.fifo
-  echo \\q > /tmp/postgres.fifo
-  echo "" > /tmp/postgres.fifo
 }
 
 create_database "authentik" "$AUTHENTIK_PG_PASS"
+
 create_database "jellyseerr" "$JELLYSEERR_PG_PASS"
 
+echo \\q > /tmp/postgres.fifo
+echo "" > /tmp/postgres.fifo
 
 rm /tmp/postgres.fifo
