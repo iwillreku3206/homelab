@@ -26,3 +26,39 @@ jellyfin.home2.rinaldolee.com {
 
     reverse_proxy jellyfin.apps:8096
 }
+
+jellyseerr.home2.rinaldolee.com {
+    tls internal
+    reverse_proxy jellyseerr.apps:5055
+}
+
+qbit.home2.rinaldolee.com {
+    tls internal
+    reverse_proxy qbittorrent.apps:8080
+}
+
+radarr.home2.rinaldolee.com {
+    tls internal
+    reverse_proxy radarr.apps:7878
+}
+
+sonarr.home2.rinaldolee.com {
+    tls internal
+    reverse_proxy sonarr.apps:8989
+}
+
+lidarr.home2.rinaldolee.com {
+    tls internal
+    reverse_proxy lidarr.apps:8686
+}
+
+prowlarr.home2.rinaldolee.com {
+    tls internal
+    reverse_proxy lidarr.apps:9696
+}
+
+bazarr.home2.rinaldolee.com {
+    tls internal
+    reverse_proxy bazarr.apps:6767
+}
+
