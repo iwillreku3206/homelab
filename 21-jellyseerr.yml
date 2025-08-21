@@ -5,7 +5,7 @@ networks:
     external: true
 
 services:
-  jellyfin:
+  jellyseerr:
     image: fallenbagel/jellyseerr:latest
     hostname: jellyseerr
     networks:
@@ -19,7 +19,6 @@ services:
       - DB_USER=jellyseerr 
       - DB_PASS=${JELLYSEERR_PG_PASS}
       - DB_NAME="jellyseerr"
-      - TZ=Asia/Manila
     volumes:
       - ${BASE_FAST_DIR}/jellyseerr/config:/app/config
     healthcheck:
