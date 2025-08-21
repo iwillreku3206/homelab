@@ -28,7 +28,6 @@ PGPASSWORD="$POSTGRES_ROOT_PASSWORD" psql -h $CORE_INTERNAL_IP -p 5432 -U postgr
 # $2: password
 create_database() {
   echo CREATE DATABASE IF NOT EXISTS $1\; > /tmp/postgres.fifo
-  echo CREATE USER IF NOT EXISTS $1 WITH PASSWORD \'$2\'\; > /tmp/postgres.fifo
 
   echo DO > /tmp/postgres.fifo
   echo   '$do$' > /tmp/postgres.fifo
