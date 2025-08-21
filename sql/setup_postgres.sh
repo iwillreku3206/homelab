@@ -27,7 +27,6 @@ PGPASSWORD="$POSTGRES_ROOT_PASSWORD" psql -h $CORE_INTERNAL_IP -p 5432 -U postgr
 # $1: name
 # $2: password
 create_database() {
-  echo CREATE DATABASE IF NOT EXISTS $1\; > /tmp/postgres.fifo
   echo SELECT \'CREATE DATABASE $1\' > /tmp/postgres.fifo
   echo  WHERE NOT EXISTS \(SELECT FROM pg_database WHERE datname = \'$1\'\)\gexec
 
