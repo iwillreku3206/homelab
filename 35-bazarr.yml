@@ -1,0 +1,31 @@
+version: "3.9"
+
+networks:
+  apps:
+    external: true
+
+services:
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    hostname: bazarr
+    networks:
+      - apps
+    user: root
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Manila
+    volumes:
+      - ${BASE_FAST_DIR}/bazarr/config:/config
+      - ${BASE_SLOW_DIR}${MEDIA_MOVIE_PATH}:/movies
+      - ${BASE_SLOW_DIR}${MEDIA_TVSHOW_PATH}:/tv
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:6767 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    deploy: 
+      placement:
+        constraints:
+          - node.hostname == ${APPS_HOSTNAME}

@@ -24,24 +24,24 @@ fi
 
 PGPASSWORD="$POSTGRES_ROOT_PASSWORD" psql -h $CORE_INTERNAL_IP -p 5432 -U postgres < /tmp/postgres.fifo &
 
-# Create the database
-echo CREATE DATABASE authentik\; > /tmp/postgres.fifo
+# $1: name
+# $2: password
+create_database() {
+  echo CREATE DATABASE IF NOT EXISTS $1\; > /tmp/postgres.fifo
+  echo CREATE USER IF NOT EXISTS $1 WITH PASSWORD \'$2\'\; > /tmp/postgres.fifo
+  echo GRANT ALL PRIVILEGES ON DATABASE $1 TO $1\; > /tmp/postgres.fifo
+  echo \\c $1 >> /tmp/postgres.fifo
+  echo GRANT ALL ON SCHEMA public TO $1\; > /tmp/postgres.fifo
+  echo ALTER DEFAULT PRIVILEGES IN SCHEMA public > /tmp/postgres.fifo
+  echo     GRANT ALL ON TABLES TO $1\; > /tmp/postgres.fifo
+  echo ALTER DEFAULT PRIVILEGES IN SCHEMA public > /tmp/postgres.fifo
+  echo     GRANT ALL ON SEQUENCES TO $1\; > /tmp/postgres.fifo
+  echo \\q > /tmp/postgres.fifo
+  echo "" > /tmp/postgres.fifo
+}
 
-# Create the user with a password (replace 'yourpassword'!)
-echo CREATE USER authentik WITH PASSWORD \'$AUTHENTIK_PG_PASS\'\; > /tmp/postgres.fifo
+create_database "authentik" "$AUTHENTIK_PG_PASS"
+create_database "jellyseerr" "$JELLYSEERR_PG_PASS"
 
-# Give the user full privileges on the database
-echo GRANT ALL PRIVILEGES ON DATABASE authentik TO authentik\; > /tmp/postgres.fifo
-
-# Grant schema privilages
-
-echo \\c authentik >> /tmp/postgres.fifo
-echo GRANT ALL ON SCHEMA public TO authentik\; > /tmp/postgres.fifo
-echo ALTER DEFAULT PRIVILEGES IN SCHEMA public > /tmp/postgres.fifo
-echo     GRANT ALL ON TABLES TO authentik\; > /tmp/postgres.fifo
-echo ALTER DEFAULT PRIVILEGES IN SCHEMA public > /tmp/postgres.fifo
-echo     GRANT ALL ON SEQUENCES TO authentik\; > /tmp/postgres.fifo
-echo \\q > /tmp/postgres.fifo
-echo "" > /tmp/postgres.fifo
 
 rm /tmp/postgres.fifo

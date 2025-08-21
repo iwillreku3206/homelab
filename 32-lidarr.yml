@@ -1,0 +1,31 @@
+version: "3.9"
+
+networks:
+  apps:
+    external: true
+
+services:
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    hostname: lidarr
+    networks:
+      - apps
+    user: root
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=Asia/Manila
+    volumes:
+      - ${BASE_FAST_DIR}/lidarr/config:/config
+      - ${BASE_SLOW_DIR}${MEDIA_MUSIC_PATH}:/music
+      - ${BASE_SLOW_DIR}${DOWNLOADER_PATH}:/downloads
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8686 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+    deploy: 
+      placement:
+        constraints:
+          - node.hostname == ${APPS_HOSTNAME}
