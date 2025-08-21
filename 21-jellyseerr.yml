@@ -3,6 +3,8 @@ version: "3.9"
 networks:
   apps:
     external: true
+  postgres:
+    external: true
 
 services:
   jellyseerr:
@@ -10,6 +12,7 @@ services:
     hostname: jellyseerr
     networks:
       - apps
+      - postgres
     user: root
     environment:
       - LOG_LEVEL=debug
