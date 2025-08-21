@@ -10,9 +10,9 @@ services:
     hostname: prowlarr
     user: root
     environment:
-      - PUID=0
-      - PGID=0
-      - TZ=Asia/Manila
+      - PUID: 0
+      - PGID: 0
+      - TZ: Asia/Manila
     volumes:
       - ${BASE_FAST_DIR}/prowlarr/config:/config
     healthcheck:

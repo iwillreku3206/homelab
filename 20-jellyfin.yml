@@ -12,10 +12,10 @@ services:
       - apps
     user: root
     environment:
-      - PUID=0
-      - PGID=0
-      - TZ=Asia/Manila
-      - JELLYFIN_PublishedServerUrl=${JELLYFIN_PUBLIC_URL} #optional
+      - PUID: 0
+      - PGID: 0
+      - TZ: Asia/Manila
+      - JELLYFIN_PublishedServerUrl: ${JELLYFIN_PUBLIC_URL}
     volumes:
       - ${BASE_FAST_DIR}/jellyfin/config:/config
       - ${BASE_SLOW_DIR}${MEDIA_TVSHOW_PATH}:/data/tvshows

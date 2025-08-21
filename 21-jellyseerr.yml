@@ -15,13 +15,13 @@ services:
       - postgres
     user: root
     environment:
-      - LOG_LEVEL=debug
-      - TZ=Asia/Manila
-      - DB_TYPE=postgres
-      - DB_HOST="postgres.postgres"
-      - DB_USER=jellyseerr 
-      - DB_PASS=${JELLYSEERR_PG_PASS}
-      - DB_NAME="jellyseerr"
+      - LOG_LEVEL: debug
+      - TZ: Asia/Manila
+      - DB_TYPE: postgres
+      - DB_HOST: postgres.postgres
+      - DB_USER: jellyseerr 
+      - DB_PASS: ${JELLYSEERR_PG_PASS}
+      - DB_NAME: jellyseerr
     volumes:
       - ${BASE_FAST_DIR}/jellyseerr/config:/app/config
     healthcheck:
