@@ -23,6 +23,7 @@ if [ -z "${POSTGRES_ROOT_PASSWORD}" ]; then
 fi
 
 PGPASSWORD="$POSTGRES_ROOT_PASSWORD" psql -h $CORE_INTERNAL_IP -p 5432 -U postgres < /tmp/postgres.fifo 2>&1 | (echo -n '<<< ' && cat) &
+BACK_PID=$!
 
 # $1: name
 # $2: password
@@ -71,4 +72,5 @@ create_database "jellyseerr" "$JELLYSEERR_PG_PASS"
 echo \\q > /tmp/postgres.fifo
 echo "" > /tmp/postgres.fifo
 
+wait $BACK_PID
 rm /tmp/postgres.fifo
