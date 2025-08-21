@@ -12,9 +12,9 @@ services:
       - apps
     user: root
     environment:
-      - PUID: 0
-      - PGID: 0
-      - TZ: Asia/Manila
+      PUID: 0
+      PGID: 0
+      TZ: Asia/Manila
     volumes:
       - ${BASE_FAST_DIR}/lidarr/config:/config
       - ${BASE_SLOW_DIR}${MEDIA_MUSIC_PATH}:/music

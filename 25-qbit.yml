@@ -12,11 +12,11 @@ services:
       - apps
     user: root
     environment:
-      - PUID: 0
-      - PGID: 0
-      - TZ: Asia/Manila
-      - WEBUI_PORT: 8080
-      - TORRENTING_PORT: 6881
+      PUID: 0
+      PGID: 0
+      TZ: Asia/Manila
+      WEBUI_PORT: 8080
+      TORRENTING_PORT: 6881
     volumes:
       - ${BASE_FAST_DIR}/qbit/config:/config
       - ${BASE_SLOW_DIR}${DOWNLOADER_PATH}:/downloads
