@@ -22,13 +22,13 @@ if [ -z "${POSTGRES_ROOT_PASSWORD}" ]; then
   rm .env
 fi
 
-PGPASSWORD="$POSTGRES_ROOT_PASSWORD" psql -h $CORE_INTERNAL_IP -p 5432 -U postgres < /tmp/postgres.fifo | (echo -n '<<' && cat) &
+PGPASSWORD="$POSTGRES_ROOT_PASSWORD" psql -h $CORE_INTERNAL_IP -p 5432 -U postgres < /tmp/postgres.fifo | (echo -n '<<< ' && cat) &
 
 # $1: name
 # $2: password
 
 send_sql() {
-  echo $1
+  echo "> $1"
   echo $1 > /tmp/postgres.fifo
 }
 
