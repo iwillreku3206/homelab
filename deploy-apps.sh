@@ -40,7 +40,7 @@ docker stack deploy -d -c 31-sonarr.yml sonarr
 
 echo "Deploying Lidarr..."
 mkdir -p $BASE_FAST_DIR/lidarr/config
-docker stack deploy -d -c 33-lidarr.yml lidarr
+docker stack deploy -d -c 32-lidarr.yml lidarr
 
 echo "Deploying Prowlarr..."
 mkdir -p $BASE_FAST_DIR/prowlarr/config

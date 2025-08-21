@@ -7,7 +7,7 @@ networks:
 services:
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
-    container_name: qbittorrent
+    hostname: qbittorrent
     networks:
       - apps
     user: root
