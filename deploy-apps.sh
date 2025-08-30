@@ -51,5 +51,6 @@ mkdir -p $BASE_FAST_DIR/bazarr/config
 docker stack deploy -d -c 35-bazarr.yml bazarr
 
 echo "Deploying Forgejo..."
+echo $TZ > /etc/timezone
 mkdir -p $BASE_FAST_DIR/forgejo
 docker stack deploy -d -c 40-forgejo.yml forgejo

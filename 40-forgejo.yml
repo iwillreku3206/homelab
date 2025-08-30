@@ -7,7 +7,7 @@ networks:
     external: true
 
 services:
-  bazarr:
+  forgejo:
     image: codeberg.org/forgejo/forgejo:12
     hostname: forgejo
     networks:
