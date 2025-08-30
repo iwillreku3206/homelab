@@ -56,6 +56,8 @@ create_database() {
   send_sql   "END"
   send_sql   "\$do$;"
 
+  send_sql  "ALTER USER $1 WITH PASSWORD '$2'"; # why
+
   send_sql "GRANT ALL PRIVILEGES ON DATABASE $1 TO $1;"
   send_sql "\c $1"
   send_sql "GRANT ALL ON SCHEMA public TO $1;"
