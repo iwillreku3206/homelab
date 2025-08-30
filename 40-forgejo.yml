@@ -15,8 +15,8 @@ services:
       - postgres
     user: root
     environment:
-      USER_UID: 0
-      USER_GID: 0
+      USER_UID: 1000
+      USER_GID: 1000
       TZ: Asia/Manila
       FORGEJO__server__DOMAIN: ${FORGEJO_DOMAIN}
       FORGEJO__server__DISABLE_SSH: 'true'
