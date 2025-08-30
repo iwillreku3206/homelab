@@ -62,3 +62,7 @@ bazarr.home2.rinaldolee.com {
     reverse_proxy bazarr.apps:6767
 }
 
+git.home2.rinaldolee.com {
+    tls internal
+    reverse_proxy forgejo.apps:3000
+}
