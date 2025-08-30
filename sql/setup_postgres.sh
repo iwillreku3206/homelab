@@ -66,8 +66,8 @@ create_database() {
 }
 
 create_database "authentik" "$AUTHENTIK_PG_PASS"
-
 create_database "jellyseerr" "$JELLYSEERR_PG_PASS"
+create_database "forgejo" "$FORGEJO_PG_PASS"
 
 echo \\q > /tmp/postgres.fifo
 echo "" > /tmp/postgres.fifo

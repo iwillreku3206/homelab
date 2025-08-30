@@ -49,3 +49,7 @@ docker stack deploy -d -c 34-prowlarr.yml prowlarr
 echo "Deploying Bazarr..."
 mkdir -p $BASE_FAST_DIR/bazarr/config
 docker stack deploy -d -c 35-bazarr.yml bazarr
+
+echo "Deploying Forgejo..."
+mkdir -p $BASE_FAST_DIR/forgejo
+docker stack deploy -d -c 40-forgejo.yml forgejo
