@@ -1,5 +1,7 @@
 set -e
 
+export PATH="$PATH:/sbin:/usr/sbin:/usr/local/sbin"
+
 if ! command -v forgejo >/dev/null 2>&1
 then
   apt install -y wget apt-transport-https
