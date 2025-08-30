@@ -1,3 +1,5 @@
+set -e
+
 if ! command -v forgejo >/dev/null 2>&1
 then
   apt install -y wget apt-transport-https
