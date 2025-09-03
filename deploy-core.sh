@@ -31,6 +31,10 @@ echo "Deploying Caddy..."
 ./03-caddy.sh
 docker stack deploy -d -c 03-caddy.yml caddy
 
+echo "Deploying MongoDB..."
+mkdir -p $BASE_FAST_DIR/mongodb/{db,config}
+docker stack deploy -d -c 05-mongo.yml mongo
+
 echo "Deploying PostgreSQL..."
 mkdir -p $BASE_FAST_DIR/postgres
 docker stack deploy -d -c 06-postgres.yml postgres
@@ -44,3 +48,8 @@ mkdir -p $BASE_FAST_DIR/authentik/templates
 mkdir -p $BASE_FAST_DIR/authentik/certs
 docker stack deploy -d -c 08-authentik.yml authentik
 
+echo "Deploy Prometheus"
+mkdir -p $BASE_FAST_DIR/prometheus/data
+echo " - Copying configuration"
+cp prometheus/prometheus.yml $BASE_FAST_DIR/prometheus/config.yml
+docker stack deploy -d -c 10-prometheus.yml prometheus

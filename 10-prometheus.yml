@@ -1,0 +1,24 @@
+networks:
+  apps:
+    external: true
+
+services:
+  prometheus:
+    image: prom/prometheus
+    hostname: prometheus
+    networks:
+      - apps
+    user: root
+    volumes:
+      - ${BASE_FAST_DIR}/prometheus/config.yml:/etc/prometheus/prometheus.yml
+      - ${BASE_FAST_DIR}/prometheus/data:/prometheus
+    deploy: 
+      placement:
+        constraints:
+          - node.hostname == ${CORE_HOSTNAME}
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s

@@ -15,8 +15,7 @@ gpg --batch --yes --decrypt \
 set -a
 source .env
 set +a
-
-env
+rm .env
 
 echo Writing /etc/resolv.conf
 chattr -i /etc/resolv.conf
