@@ -11,7 +11,10 @@ services:
     networks:
       - mongodb
     ports:
-      - 0.0.0.0:27017:27017
+      - target: 27017
+        published: 27017
+        protocol: tcp
+        mode: host
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
