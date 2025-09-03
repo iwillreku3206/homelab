@@ -7,7 +7,9 @@ networks:
 services:
   mongo:
     image: mongo:8
-    container_name: mongo
+    hostname: mongo
+    networks:
+      - mongodb
     ports:
       - "27017:27017"
     environment:
