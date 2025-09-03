@@ -66,3 +66,8 @@ git.home2.rinaldolee.com {
     tls internal
     reverse_proxy forgejo.apps:3000
 }
+
+prometheus.home2.rinaldolee.com {
+    tls internal
+    reverse_proxy prometheus.apps:9090
+}
