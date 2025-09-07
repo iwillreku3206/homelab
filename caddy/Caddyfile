@@ -71,3 +71,13 @@ prometheus.home2.rinaldolee.com {
     tls internal
     reverse_proxy prometheus.apps:9090
 }
+
+overleaf.home2.rinaldolee.com {
+    tls internal
+    reverse_proxy sharelatex.apps
+}
+
+chat.home2.rinaldolee.com {
+    tls internal
+    reverse_proxy rocketchat.apps:3000
+}
