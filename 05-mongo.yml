@@ -21,7 +21,7 @@ services:
       MONGO_INITDB_DATABASE: admin
     user: root
     volumes:
-      - /root/homelab/init-replica.js:/docker-entrypoint-initdb.d/init-replica.js:ro
+      - /root/homelab/db/init-replica.js:/docker-entrypoint-initdb.d/init-replica.js:ro
       - ${BASE_FAST_DIR}/mongodb/db:/data/db
       - ${BASE_FAST_DIR}/mongodb/config:/data/configdb
     deploy: 
