@@ -3,7 +3,7 @@ version: "3.9"
 networks:
   apps:
     external: true
-  mongo:
+  mongodb:
     external: true
   prometheus:
     external: true
@@ -14,7 +14,7 @@ services:
     restart: always
     networks:
       - apps
-      - mongo
+      - mongodb
       - prometheus
     labels:
       prometheus.io/scrape: "true"
