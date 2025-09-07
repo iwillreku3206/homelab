@@ -25,8 +25,8 @@ services:
       DEPLOY_METHOD: docker
       DEPLOY_PLATFORM: on-premise
       LICENSE_DEBUG: true
-      OVERWRITE_SETTING_Prometheus_Enabled: false
-      OVERWRITE_SETTING_Prometheus_Port: "${METRICS_PORT:-9458}"
+      OVERWRITE_SETTING_Prometheus_Enabled: "true"
+      OVERWRITE_SETTING_Prometheus_Port: "9458"
       MONGO_URL: mongodb://rocketchat:${ROCKET_CHAT_MONGO_PASS_ESCAPED}@mongo.mongo:27017/rocketchat?authSource=admin
     expose:
       - 3000
