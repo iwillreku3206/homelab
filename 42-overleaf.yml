@@ -10,8 +10,12 @@ networks:
 
 services:
   sharelatex:
-    container_name: sharelatex
     image: sharelatex/sharelatex:latest
+    hostname: "overleaf"
+    networks: 
+      - apps
+      - mongo
+      - redis
     environment:
       TZ: 'Asia/Manila'
       REDIS_HOST: "redis.redis"
@@ -43,7 +47,3 @@ services:
     # Volumes store your data between container upgrades
     volumes:
       - "${BASE_FAST_DIR}/overleaf:/var/lib/overleaf"
-    restart: unless-stopped
-    hostname: "sharelatex"
-    networks: 
-      - "apps"

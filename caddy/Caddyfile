@@ -74,7 +74,7 @@ prometheus.home2.rinaldolee.com {
 
 overleaf.home2.rinaldolee.com {
     tls internal
-    reverse_proxy sharelatex.apps
+    reverse_proxy overleaf.apps
 }
 
 chat.home2.rinaldolee.com {
