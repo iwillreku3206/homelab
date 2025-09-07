@@ -3,6 +3,8 @@ version: "3.9"
 networks:
   mongodb:
     external: true
+  prometheus:
+    external: true
 
 services:
   mongo:
@@ -34,3 +36,15 @@ services:
       timeout: 10s
       retries: 5
       start_period: 30s
+  mongodb-exporter:
+    image: docker.io/percona/mongodb_exporter:${MONGODB_EXPORTER_VERSION:-0.44.0}
+    hostname: mongo-exporter
+    networks:
+      - mongodb
+    depends_on:
+      - mongo
+    command:
+      - --mongodb.uri=mongodb://root:${MONGO_ROOT_PASSWORD_ESCAPED}@mongodb:27017/?
+      - --collect-all
+      - --compatible-mode
+

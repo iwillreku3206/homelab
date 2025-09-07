@@ -5,32 +5,35 @@ networks:
     external: true
   mongo:
     external: true
+  prometheus:
+    external: true
 
 services:
   rocketchat:
     image: ${IMAGE:-registry.rocket.chat/rocketchat/rocket.chat}:${RELEASE:-latest}
     restart: always
+    networks:
+      - apps
+      - mongo
+      - prometheus
     labels:
       prometheus.io/scrape: "true"
-      prometheus.io/port: ${METRICS_PORT:-9458}
+      prometheus.io/port: 9458
     environment:
-      ROOT_URL: ${ROOT_URL:-http://localhost}
-      PORT: ${PORT:-3000}
+      ROOT_URL: ${ROCKET_CHAT_ROOT_URL}
+      PORT: 3000
       DEPLOY_METHOD: docker
       DEPLOY_PLATFORM: on-premise
       LICENSE_DEBUG: true
       OVERWRITE_SETTING_Prometheus_Enabled: false
       OVERWRITE_SETTING_Prometheus_Port: "${METRICS_PORT:-9458}"
-      MONGO_URL: mongodb://rocketchat:${ROCKET_CHAT_MONGO_PASS}@mongodb:27017/rocketchat?replicaSet=rs0&authSource=admin
+      MONGO_URL: mongodb://rocketchat:${ROCKET_CHAT_MONGO_PASS_ESCAPED}@mongo.mongo:27017/rocketchat?authSource=admin
     expose:
-      - ${PORT:-3000}
-      - ${METRICS_PORT:-9458}
-    ports:
-      - "${BIND_IP:-0.0.0.0}:${HOST_PORT:-3000}:${PORT:-3000}"
-      - "${BIND_IP:-0.0.0.0}:${METRICS_PORT:-9458}:${METRICS_PORT:-9458}"
-    # healthcheck:
-    #   test: ["CMD", "nc", "-zv", "-w", "10", "rocketchat", "${PORT:-3000}"]
-    #   interval: 30s
-    #   timeout: 10s
-    #   retries: 10
-    #   start_period: 30s
+      - 3000
+      - 9458
+    healthcheck:
+      test: ["CMD", "nc", "-zv", "-w", "10", "rocketchat", "3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 30s

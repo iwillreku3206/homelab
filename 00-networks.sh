@@ -74,3 +74,16 @@ if [ $? -ne 0 ]; then
     --attachable \
     redis
 fi
+
+# prometheus network
+docker network inspect redis > /dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+  docker network create \
+    --driver overlay \
+    --subnet 172.133.0.0/16 \
+    --gateway 172.133.0.1 \
+    --scope swarm \
+    --attachable \
+    prometheus
+fi

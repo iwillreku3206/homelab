@@ -54,3 +54,10 @@ echo "Deploying Forgejo..."
 echo $TZ > /etc/timezone
 mkdir -p $BASE_FAST_DIR/forgejo
 docker stack deploy -d -c 40-forgejo.yml forgejo
+
+echo "Deploying Rocket Chat..."
+docker stack deploy -d -c 41-rocket-chat.yml rocket-chat
+
+echo "Deploying Overleaf..."
+mkdir -p $BASE_FAST_DIR/overleaf
+docker stack deploy -d -c 42-overleaf.yml overleaf

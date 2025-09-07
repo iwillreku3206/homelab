@@ -1,0 +1,5 @@
+- targets:
+    - mongodb-exporter.prometheus:9216
+  labels:
+    job: mongodb
+    service: mongodb

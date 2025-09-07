@@ -1,0 +1,5 @@
+- targets:
+    - rocketchat.prometheus:9458
+  labels:
+    job: rocketchat
+    service: rocketchat

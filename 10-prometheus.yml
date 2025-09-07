@@ -1,6 +1,8 @@
 networks:
   apps:
     external: true
+  prometheus:
+    external: true
 
 services:
   prometheus:
@@ -8,9 +10,10 @@ services:
     hostname: prometheus
     networks:
       - apps
+      - prometheus
     user: root
     volumes:
-      - ${BASE_FAST_DIR}/prometheus/config.yml:/etc/prometheus/prometheus.yml
+      - ${BASE_FAST_DIR}/prometheus:/etc/prometheus
       - ${BASE_FAST_DIR}/prometheus/data:/prometheus
     deploy: 
       placement:
