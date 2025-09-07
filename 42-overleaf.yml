@@ -5,7 +5,7 @@ networks:
     external: true
   redis:
     external: true
-  mongo:
+  mongodb:
     external: true
 
 services:
@@ -14,7 +14,7 @@ services:
     hostname: "overleaf"
     networks: 
       - apps
-      - mongo
+      - mongodb
       - redis
     environment:
       TZ: 'Asia/Manila'
