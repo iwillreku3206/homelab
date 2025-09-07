@@ -21,6 +21,7 @@ services:
       MONGO_INITDB_DATABASE: admin
     user: root
     volumes:
+      - /root/homelab/init-replica.js:/docker-entrypoint-initdb.d/init-replica.js:ro
       - ${BASE_FAST_DIR}/mongodb/db:/data/db
       - ${BASE_FAST_DIR}/mongodb/config:/data/configdb
     deploy: 
@@ -28,7 +29,7 @@ services:
         constraints:
           - node.hostname == ${CORE_HOSTNAME}
     healthcheck:
-      test: ["CMD-SHELL", "mongosh --username root --password example --eval 'db.adminCommand(\"ping\")' --quiet || exit 1"]
+      test: ["CMD-SHELL", "mongosh --username root --password ${MONGO_ROOT_PASSWORD} --eval 'db.adminCommand(\"ping\")' --quiet || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
