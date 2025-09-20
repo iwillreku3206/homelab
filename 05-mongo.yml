@@ -23,7 +23,7 @@ services:
       MONGO_INITDB_DATABASE: admin
     user: root
     volumes:
-      - /root/homelab/db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - /root/homelab/db/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
       - /etc/mongo-keyfile:/data/configdb/keyfile:ro
       - ${BASE_FAST_DIR}/mongodb/db:/data/db
       - ${BASE_FAST_DIR}/mongodb/config:/data/configdb
