@@ -1,4 +1,8 @@
-http://home2.rinaldolee.com  {
+tls {
+	dns cloudflare {env.CF_API_TOKEN}
+}
+
+pihole.home.rinaldolee.com  {
 	reverse_proxy 172.17.0.1:81
 }
 
@@ -8,8 +12,6 @@ auth.home2.rinaldolee.com {
     header {
         Strict-Transport-Security "max-age=63072000"
     }
-
-    tls internal
 
     reverse_proxy https://authentik-server.apps:9443 {
         transport http {
@@ -21,63 +23,46 @@ auth.home2.rinaldolee.com {
     }
 }
 
-jellyfin.home2.rinaldolee.com {
-    tls internal
-
+jellyfin.rinaldolee.com {
     reverse_proxy jellyfin.apps:8096
 }
 
-jellyseerr.home2.rinaldolee.com {
-    tls internal
+jellyseerr.rinaldolee.com {
     reverse_proxy jellyseerr.apps:5055
 }
 
-qbit.home2.rinaldolee.com {
-    tls internal
+qbit.rinaldolee.com {
     reverse_proxy qbittorrent.apps:8080
 }
 
-radarr.home2.rinaldolee.com {
-    tls internal
+radarr.rinaldolee.com {
     reverse_proxy radarr.apps:7878
 }
 
-sonarr.home2.rinaldolee.com {
-    tls internal
+sonarr.rinaldolee.com {
     reverse_proxy sonarr.apps:8989
 }
 
-lidarr.home2.rinaldolee.com {
-    tls internal
+lidarr.rinaldolee.com {
     reverse_proxy lidarr.apps:8686
 }
 
-prowlarr.home2.rinaldolee.com {
-    tls internal
+prowlarr.rinaldolee.com {
     reverse_proxy prowlarr.apps:9696
 }
 
-bazarr.home2.rinaldolee.com {
-    tls internal
+bazarr.rinaldolee.com {
     reverse_proxy bazarr.apps:6767
 }
 
-git.home2.rinaldolee.com {
-    tls internal
+git.rinaldolee.com {
     reverse_proxy forgejo.apps:3000
 }
 
-prometheus.home2.rinaldolee.com {
-    tls internal
+prometheus.rinaldolee.com {
     reverse_proxy prometheus.apps:9090
 }
 
-overleaf.home2.rinaldolee.com {
-    tls internal
-    reverse_proxy overleaf.apps
-}
-
-chat.home2.rinaldolee.com {
-    tls internal
+chat.rinaldolee.com {
     reverse_proxy rocketchat.apps:3000
 }

@@ -17,6 +17,8 @@ services:
     hostname: caddy
     networks:
       - apps
+    env:
+      CF_API_TOKEN: ${CLOUDFLARE_TOKEN}
     deploy:
       placement:
         constraints:
