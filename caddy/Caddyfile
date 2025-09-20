@@ -1,9 +1,8 @@
-tls {
-	dns cloudflare {env.CF_API_TOKEN}
-}
-
 pihole.home.rinaldolee.com  {
-	reverse_proxy 172.17.0.1:81
+    reverse_proxy 172.17.0.1:81
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
 
 auth.home2.rinaldolee.com {
@@ -21,48 +20,84 @@ auth.home2.rinaldolee.com {
         header_up X-Forwarded-For {remote}
         header_up Host {host}
     }
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
 
 jellyfin.rinaldolee.com {
     reverse_proxy jellyfin.apps:8096
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
 
 jellyseerr.rinaldolee.com {
     reverse_proxy jellyseerr.apps:5055
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
 
 qbit.rinaldolee.com {
     reverse_proxy qbittorrent.apps:8080
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
 
 radarr.rinaldolee.com {
     reverse_proxy radarr.apps:7878
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
 
 sonarr.rinaldolee.com {
     reverse_proxy sonarr.apps:8989
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
 
 lidarr.rinaldolee.com {
     reverse_proxy lidarr.apps:8686
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
 
 prowlarr.rinaldolee.com {
     reverse_proxy prowlarr.apps:9696
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
 
 bazarr.rinaldolee.com {
     reverse_proxy bazarr.apps:6767
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
 
 git.rinaldolee.com {
     reverse_proxy forgejo.apps:3000
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
 
 prometheus.rinaldolee.com {
     reverse_proxy prometheus.apps:9090
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
 
 chat.rinaldolee.com {
     reverse_proxy rocketchat.apps:3000
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
 }
