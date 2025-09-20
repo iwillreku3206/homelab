@@ -36,11 +36,11 @@ create_mongo_user() {
     return 1
   fi
 
-  mongosh "mongodb://root:$MONGO_ROOT_PASSWORD@localhost:27017/$dbname" --eval "db.createUser({
+  mongosh "mongodb://root:$MONGO_ROOT_PASSWORD_ESCAPEDD@localhost:27017/$dbname" --eval "db.createUser({
     user: '$username',
     pwd: '$password',
     roles: [{ role: 'readWrite', db: '$dbname' }]
   })"
 }
 
-create_mongo_user "rocketchat" "$ROCKET_CHAT_MONGO_PASS_ESCAPED"
+create_mongo_user "rocketchat" "$ROCKET_CHAT_MONGO_PASS"
