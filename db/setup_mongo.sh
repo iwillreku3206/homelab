@@ -36,7 +36,7 @@ create_mongo_user() {
     return 1
   fi
 
-  mongosh "$MONGO_ROOT_PASSWORD/$dbname" --eval "db.createUser({
+  mongosh "mongodb://root:$MONGO_ROOT_PASSWORD@localhost:27017/$dbname" --eval "db.createUser({
     user: '$username',
     pwd: '$password',
     roles: [{ role: 'readWrite', db: '$dbname' }]
