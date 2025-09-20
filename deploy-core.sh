@@ -33,6 +33,8 @@ docker stack deploy -d -c 03-caddy.yml caddy
 
 echo "Deploying MongoDB..."
 mkdir -p $BASE_FAST_DIR/mongodb/{db,config}
+echo -ne "$MONGO_KEYFILE" > /etc/mongo-keyfile
+chmod 400 /etc/mongo-keyfile
 docker stack deploy -d -c 05-mongo.yml mongo
 
 echo "Deploying PostgreSQL..."
