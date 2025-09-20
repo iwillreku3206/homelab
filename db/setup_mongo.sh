@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
-apt install -y postgresql-client
+if ! command -v mongosh -h >/dev/null 2>&1; then
+  wget -qO- https://www.mongodb.org/static/pgp/server-8.0.asc | tee /etc/apt/trusted.gpg.d/server-8.0.asc
+  echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/debian bookworm/mongodb-org/8.0 main" | tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+  apt update
+  apt install -y mongodb-mongosh
+fi
 
-mkfifo /tmp/postgres.fifo
-
-if [ -z "${POSTGRES_ROOT_PASSWORD}" ]; then
+if [ -z "${MONGO_ROOT_PASSWORD}" ]; then
   apt install -y gpg
 
   read -s -p "Enter ENV Password: " GPG_PASS
@@ -22,8 +25,6 @@ if [ -z "${POSTGRES_ROOT_PASSWORD}" ]; then
   rm .env
 fi
 
-PGPASSWORD="$POSTGRES_ROOT_PASSWORD" psql -h $CORE_INTERNAL_IP -p 5432 -U postgres < /tmp/postgres.fifo 2>&1 | (echo -n '<<< ' && cat) &
-BACK_PID=$!
 
 create_mongo_user() {
   local username="$1"
