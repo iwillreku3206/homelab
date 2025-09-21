@@ -2,7 +2,7 @@
 
 set -e
 
-apt-get install -y gpg
+apt-get install -y gpg rsync
 
 read -s -p "Enter ENV Password: " GPG_PASS
 
