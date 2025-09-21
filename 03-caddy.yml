@@ -11,9 +11,10 @@ services:
       - 443:443
       - 443:443/udp
     volumes:
-      - ${BASE_FAST_DIR}/caddy:/etc/caddy
-      - ${BASE_FAST_DIR}/caddy_data:/data
-    image: caddy
+      - ${BASE_FAST_DIR}/caddy/etc:/etc/caddy
+      - ${BASE_FAST_DIR}/caddy/data:/data
+      - ${BASE_FAST_DIR}/caddy/config:/config
+    image: ghcr.io/caddybuilds/caddy-cloudflare:latest
     hostname: caddy
     networks:
       - apps

@@ -54,5 +54,5 @@ docker stack deploy -d -c 08-authentik.yml authentik
 echo "Deploy Prometheus"
 mkdir -p $BASE_FAST_DIR/prometheus/data
 echo " - Copying configuration"
-cp prometheus/prometheus.yml $BASE_FAST_DIR/prometheus/config.yml
+cp -r prometheus/* $BASE_FAST_DIR/prometheus
 docker stack deploy -d -c 10-prometheus.yml prometheus
