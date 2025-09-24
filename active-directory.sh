@@ -36,7 +36,7 @@ if [[ -e /etc/samba/smb.conf ]]; then
   rm /etc/samba/smb.conf
 fi
 
-samba-tool domain provision --use-rfc2307 --realm "$AD_REALM" --domain "$AD_DOMAIN" --server-role dc --dns-backend SAMBA_INTERNAL --adminpass "$AD_ADMIN_PASSWORD" --function-level=2016
+samba-tool domain provision --use-rfc2307 --realm "$AD_REALM" --domain "$AD_DOMAIN" --server-role dc --dns-backend SAMBA_INTERNAL --adminpass "$AD_ADMIN_PASSWORD"
 
 echo Updating /etc/hosts
 echo "$CORE_INTERNAL_IP DC1.$AD_REALM   DC1" >> /etc/hosts
