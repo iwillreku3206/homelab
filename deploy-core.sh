@@ -51,6 +51,10 @@ mkdir -p $BASE_FAST_DIR/authentik/templates
 mkdir -p $BASE_FAST_DIR/authentik/certs
 docker stack deploy -d -c 08-authentik.yml authentik
 
+echo "Deploy AD Self Service"
+source 09-ad-selfservice.sh
+docker stack deploy -d -c 09-ad-selfservice.yml ad-selfservice
+
 echo "Deploy Prometheus"
 mkdir -p $BASE_FAST_DIR/prometheus/data
 echo " - Copying configuration"
