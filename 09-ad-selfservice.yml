@@ -11,18 +11,10 @@ services:
     networks:
       - apps
     user: root
-    environment:
-      PUID: 0
-      PGID: 0
-      TZ: Asia/Manila
-      JELLYFIN_PublishedServerUrl: "${JELLYFIN_PUBLIC_URL}"
     volumes:
-      - ${BASE_FAST_DIR}/jellyfin/config:/config
-      - ${BASE_SLOW_DIR}${MEDIA_TVSHOW_PATH}:/data/tvshows
-      - ${BASE_SLOW_DIR}${MEDIA_MOVIES_PATH}:/data/movies
-      - ${BASE_SLOW_DIR}${MEDIA_MUSIC_PATH}:/data/music
+      - ${BASE_FAST_DIR}/ad-self-service/config:/var/www/conf
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8096/health || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:80 || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -30,4 +22,4 @@ services:
     deploy: 
       placement:
         constraints:
-          - node.hostname == ${APPS_HOSTNAME}
+          - node.hostname == ${CORE_HOSTNAME}
