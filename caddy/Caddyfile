@@ -5,7 +5,7 @@ pihole.home.rinaldolee.com  {
     }
 }
 
-auth.home2.rinaldolee.com {
+auth.rinaldolee.com {
     encode gzip
 
     header {
@@ -20,6 +20,14 @@ auth.home2.rinaldolee.com {
         header_up X-Forwarded-For {remote}
         header_up Host {host}
     }
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
+}
+
+selfserv.rinaldolee.com {
+    reverse_proxy self-service.apps:80
+
     tls {
         dns cloudflare {env.CF_API_TOKEN}
     }
