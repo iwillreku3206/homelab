@@ -3,6 +3,8 @@ version: "3.9"
 networks:
   apps:
     external: true
+  redis:
+    external: true
 
 services:
   self-service-password:
@@ -10,6 +12,7 @@ services:
     hostname: self-service
     networks:
       - apps
+      - redis
     user: root
     volumes:
       - ${BASE_FAST_DIR}/ad-self-service/config:/var/www/conf
