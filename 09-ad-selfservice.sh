@@ -27,10 +27,10 @@ echo "	\$keyphrase = \"$AD_SELFSERVE_SECRET\";" >> $BASE_FAST_DIR/ad-self-servic
 echo "	\$debug = true;" >> $BASE_FAST_DIR/ad-self-service/config/config.inc.local.php
 echo "	\$ldap_url = \"ldap://$CORE_INTERNAL_IP\";" >> $BASE_FAST_DIR/ad-self-service/config/config.inc.local.php
 echo "	\$ldap_starttls = true;" >> $BASE_FAST_DIR/ad-self-service/config/config.inc.local.php
-echo "	putenv(\"LDAPTLS_REQCERT=allow\");" >> $BASE_FAST_DIR/ad-self-service/config/config.inc.local.php
+echo "	putenv(\"LDAPTLS_REQCERT=never\");" >> $BASE_FAST_DIR/ad-self-service/config/config.inc.local.php
 echo "	//putenv(\"LDAPTLS_CACERT=/etc/ssl/certs/ca-certificates.crt\");" >> $BASE_FAST_DIR/ad-self-service/config/config.inc.local.php
 echo "	\$ldap_binddn = \"selfserve@home.rinaldolee.com\";" >> $BASE_FAST_DIR/ad-self-service/config/config.inc.local.php
-echo "	\$ldap_bindpw = '$AD_SELFSERVE_SECRET';" >> $BASE_FAST_DIR/ad-self-service/config/config.inc.local.php
+echo "	\$ldap_bindpw = '$AD_SELFSERVE_PASSWORD';" >> $BASE_FAST_DIR/ad-self-service/config/config.inc.local.php
 echo "	\$ldap_base = \"dc=home,dc=rinaldolee,dc=com\";" >> $BASE_FAST_DIR/ad-self-service/config/config.inc.local.php
 echo "	\$ldap_login_attribute = \"uid\";" >> $BASE_FAST_DIR/ad-self-service/config/config.inc.local.php
 echo "	\$use_captcha = true;" >> $BASE_FAST_DIR/ad-self-service/config/config.inc.local.php
