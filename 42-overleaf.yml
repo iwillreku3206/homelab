@@ -10,7 +10,7 @@ networks:
 
 services:
   sharelatex:
-    image: sharelatex/sharelatex:latest
+    image: fifof16/sharelatex-with-texlive-full:latest
     hostname: "overleaf"
     networks: 
       - apps
