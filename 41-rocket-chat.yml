@@ -35,3 +35,7 @@ services:
       timeout: 10s
       retries: 10
       start_period: 30s
+    deploy: 
+      placement:
+        constraints:
+          - node.hostname == ${APPS_HOSTNAME}
