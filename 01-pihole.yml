@@ -11,14 +11,15 @@ services:
     hostname: pihole
     ports:
       - 172.17.0.1:81:80
+    user: root
     environment:
       TZ: 'Asia/Manila'
       FTLCONF_webserver_api_password: ${PIHOLE_PASSWORD}
       # If using Docker's default `bridge` network setting the dns listening mode should be set to 'all'
-      FTLCONF_dns_listeningMde: 'all'
+      FTLCONF_dns_listeningMode: 'all'
     # Volumes store your data between container upgrades
     volumes:
-      - '${BASE_FAST_DIR}/pihole:/etc/pihole'
+      - '/etc/pihole:/etc/pihole'
     cap_add:
       - SYS_NICE
     restart: unless-stopped
