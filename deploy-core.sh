@@ -21,7 +21,8 @@ echo "Adding networks..."
 ./00-networks.sh
 
 echo "Deploying PiHole..."
-mkdir -p $BASE_FAST_DIR/pihole
+mkdir -p /etc/pihole
+chown 1000:1000 /etc/pihole
 docker compose -f 01-pihole.yml up -d
 
 echo "Deploying Cloudflared..."
