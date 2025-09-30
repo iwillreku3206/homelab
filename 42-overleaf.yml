@@ -42,7 +42,7 @@ services:
       OVERLEAF_EMAIL_SMTP_TLS_REJECT_UNAUTH: "true"
       OVERLEAF_EMAIL_SMTP_IGNORE_TLS: "false"
       OVERLEAF_CUSTOM_EMAIL_FOOTER: "This Overleaf instance is run by Rinaldo Lee"
-      OVERLEAF_MONGO_URL: "mongodb://overleaf:OVERLEAF_MONGO_PASSWORD_ESCAPED@mongo.mongodb:27017/overleaf?authSource=admin"
+      OVERLEAF_MONGO_URL: "mongodb://overleaf:${OVERLEAF_MONGO_PASS_ESCAPED}@mongo.mongodb:27017/overleaf?authSource=admin"
     user: root
     # Volumes store your data between container upgrades
     volumes:

@@ -44,3 +44,4 @@ create_mongo_user() {
 }
 
 create_mongo_user "rocketchat" "$ROCKET_CHAT_MONGO_PASS"
+create_mongo_user "overleaf" "$OVERLEAF_MONGO_PASS"
