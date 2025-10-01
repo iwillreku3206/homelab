@@ -18,8 +18,8 @@ services:
       - redis
     environment:
       TZ: 'Asia/Manila'
-      REDIS_HOST: "redis.redis"
-      REDIS_PORT: "6379"
+      OVERLEAF_REDIS_HOST: "redis.redis"
+      OVERLEAF_REDIS_PORT: "6379"
       OVERLEAF_LISTEN_IP: "0.0.0.0"
       OVERLEAF_APP_NAME: "Rinaldo's Math Lab"
       ENABLED_LINKED_FILE_TYPES: "project_file,project_output_file"
