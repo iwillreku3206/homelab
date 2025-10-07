@@ -27,7 +27,7 @@ services:
       LICENSE_DEBUG: "true"
       OVERWRITE_SETTING_Prometheus_Enabled: "true"
       OVERWRITE_SETTING_Prometheus_Port: "9458"
-      MONGO_URL: mongodb://rocketchat:${ROCKET_CHAT_MONGO_PASS_ESCAPED}@mongodb.mongo:27017/rocketchat?authSource=admin
+      MONGO_URL: mongodb://rocketchat:${ROCKET_CHAT_MONGO_PASS_ESCAPED}@mongo.mongodb:27017/rocketchat?authSource=admin
     healthcheck:
       test: ["CMD", "nc", "-zv", "-w", "10", "rocketchat", "3000"]
       interval: 30s
