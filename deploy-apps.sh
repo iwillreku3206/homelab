@@ -60,4 +60,4 @@ docker stack deploy -d -c 41-rocket-chat.yml rocket-chat
 
 echo "Deploying Overleaf..."
 mkdir -p $BASE_FAST_DIR/overleaf
-docker stack deploy -d -c 42-overleaf.yml overleaf
+#docker stack deploy -d -c 42-overleaf.yml overleaf
