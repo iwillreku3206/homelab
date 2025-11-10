@@ -18,8 +18,8 @@ services:
       - redis
     environment:
       TZ: 'Asia/Manila'
-      REDIS_HOST: "redis.redis"
-      REDIS_PORT: "6379"
+      OVERLEAF_REDIS_HOST: "redis.redis"
+      OVERLEAF_REDIS_PORT: "6379"
       OVERLEAF_LISTEN_IP: "0.0.0.0"
       OVERLEAF_APP_NAME: "Rinaldo's Math Lab"
       ENABLED_LINKED_FILE_TYPES: "project_file,project_output_file"
@@ -42,7 +42,8 @@ services:
       OVERLEAF_EMAIL_SMTP_TLS_REJECT_UNAUTH: "true"
       OVERLEAF_EMAIL_SMTP_IGNORE_TLS: "false"
       OVERLEAF_CUSTOM_EMAIL_FOOTER: "This Overleaf instance is run by Rinaldo Lee"
-      OVERLEAF_MONGO_URL: "mongodb://overleaf:OVERLEAF_MONGO_PASSWORD_ESCAPED@mongo.mongo:27017/overleaf?authSource=admin"
+      OVERLEAF_MONGO_URL: "mongodb://overleaf:${OVERLEAF_MONGO_PASS_ESCAPED}@mongo.mongodb:27017/overleaf?authSource=admin"
+      ALLOW_MONGO_ADMIN_CHECK_FAILURES: "true"
     user: root
     # Volumes store your data between container upgrades
     volumes:

@@ -18,7 +18,7 @@ services:
       JELLYFIN_PublishedServerUrl: "${JELLYFIN_PUBLIC_URL}"
     volumes:
       - ${BASE_FAST_DIR}/jellyfin/config:/config
-      - ${BASE_SLOW_DIR}${MEDIA_TVSHOW_PATH}:/data/tvshows
+      - ${BASE_SLOW_DIR}${MEDIA_TVSHOW_PATH}:/data/tv
       - ${BASE_SLOW_DIR}${MEDIA_MOVIES_PATH}:/data/movies
       - ${BASE_SLOW_DIR}${MEDIA_MUSIC_PATH}:/data/music
     healthcheck:

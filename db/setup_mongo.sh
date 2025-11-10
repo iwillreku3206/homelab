@@ -32,15 +32,19 @@ create_mongo_user() {
   local dbname="$1"
 
   if [[ -z "$username" || -z "$password" || -z "$dbname" ]]; then
-    echo "Usage: create_mongo_user <username> <password> <database>"
+    echo "Usage: create_mongo_user <username> <password>"
     return 1
   fi
 
-  mongosh "mongodb://root:$MONGO_ROOT_PASSWORD_ESCAPED@localhost:27017" --eval "db.createUser({
-    user: '$username',
-    pwd: '$password',
-    roles: [{ role: 'readWrite', db: '$dbname' }]
-  })"
+  mongosh "mongodb://root:$MONGO_ROOT_PASSWORD_ESCAPED@localhost:27017/admin" --eval "
+  if (!db.getUser('$username')) {
+    db.createUser({
+      user: '$username',
+      pwd: '$password',
+      roles: [{ role: 'readWrite', db: '$dbname' }]
+    })
+  }"
 }
 
 create_mongo_user "rocketchat" "$ROCKET_CHAT_MONGO_PASS"
+create_mongo_user "overleaf" "$OVERLEAF_MONGO_PASS"
