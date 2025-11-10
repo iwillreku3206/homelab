@@ -33,7 +33,7 @@ services:
           - node.hostname == ${APPS_HOSTNAME}
       resources:
         reservations:
-          devices:
-            - driver: nvidia
-              count: 1
-              capabilities: [gpu]
+          generic_resources:
+            - discrete_resource_spec:
+                kind: 'NVIDIA-GPU'
+                value: 0
