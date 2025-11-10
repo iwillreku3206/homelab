@@ -31,3 +31,9 @@ services:
       placement:
         constraints:
           - node.hostname == ${APPS_HOSTNAME}
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
