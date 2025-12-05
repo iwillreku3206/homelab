@@ -117,7 +117,7 @@ pterodactyl.rinaldolee.com {
     }
 }
 
-pterodactyl-wing.rinaldolee.com {
+pterodactyl-wing.rinaldolee.com:8080 {
     reverse_proxy 10.2.6.7:8080
 
     header {
