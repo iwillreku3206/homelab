@@ -116,3 +116,10 @@ pterodactyl.rinaldolee.com {
         dns cloudflare {env.CF_API_TOKEN}
     }
 }
+
+pterodactyl-wing.rinaldolee.com {
+    reverse_proxy 10.2.6.7:8080
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
+}
