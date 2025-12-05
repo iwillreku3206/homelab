@@ -109,3 +109,10 @@ chat.rinaldolee.com {
         dns cloudflare {env.CF_API_TOKEN}
     }
 }
+
+pterodactyl.rinaldolee.com {
+    reverse_proxy 10.2.6.7
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
+}
