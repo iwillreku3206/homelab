@@ -121,14 +121,16 @@ pterodactyl-wing.rinaldolee.com {
     reverse_proxy 10.2.6.7:8080
 
     header {
-        # CORS basics
+        # CORS
         Access-Control-Allow-Origin "*"
         Access-Control-Allow-Methods "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-        Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+        Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With, Upgrade, Connection, Sec-WebSocket-Key, Sec-WebSocket-Version, Sec-WebSocket-Protocol"
         Access-Control-Allow-Credentials "true"
-
-        # If you're proxying API responses that need OPTIONS preflight handled:
         Access-Control-Max-Age "86400"
+
+        # WebSocket upgrade headers (not strictly required, but improves compatibility)
+        Connection "upgrade"
+        Upgrade "websocket"
     }
 
     tls {
