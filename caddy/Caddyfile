@@ -55,9 +55,9 @@ qbit.rinaldolee.com {
 }
 
 radarr.rinaldolee.com {
-route {
+    route {
         # always forward outpost path to actual outpost
-        reverse_proxy /outpost.goauthentik.io/* http://outpost.company:9000
+        reverse_proxy /outpost.goauthentik.io/* http://authentik_server.apps:9000
 
         # forward authentication to outpost
         forward_auth http://authentik_server.apps:9000 {
@@ -69,6 +69,7 @@ route {
             # optional, in this config trust all private ranges, should probably be set to the outposts IP
             trusted_proxies private_ranges
         }
+    }
 
     reverse_proxy radarr.apps:7878
     tls {
