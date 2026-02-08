@@ -30,7 +30,7 @@ services:
     deploy: 
       placement:
         constraints:
-          - node.hostname == ${APPS_HOSTNAME}
+          - node.hostname == ${GPU_VM_HOSTNAME}
       resources:
         reservations:
           generic_resources:
