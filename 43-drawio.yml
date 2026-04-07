@@ -13,3 +13,7 @@ services:
     networks: 
       - apps
     user: root
+    deploy: 
+      placement:
+        constraints:
+          - node.hostname == ${APPS_HOSTNAME}

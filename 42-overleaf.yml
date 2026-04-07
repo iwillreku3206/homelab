@@ -48,3 +48,7 @@ services:
     # Volumes store your data between container upgrades
     volumes:
       - "${BASE_FAST_DIR}/overleaf:/var/lib/overleaf"
+    deploy: 
+      placement:
+        constraints:
+          - node.hostname == ${APPS_HOSTNAME}
