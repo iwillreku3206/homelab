@@ -86,7 +86,7 @@ sonarr.rinaldolee.com {
 }
 
 draw.rinaldolee.com {
-    reverse_proxy draw.apps:8080
+    reverse_proxy drawio.apps:8080
     tls {
         dns cloudflare {env.CF_API_TOKEN}
     }
