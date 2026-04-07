@@ -2,6 +2,7 @@ pihole.home.rinaldolee.com  {
     reverse_proxy 172.17.0.1:81
     tls {
         dns cloudflare {env.CF_API_TOKEN}
+	dns_challenge_override_domain rinaldolee.com
     }
 }
 
@@ -79,6 +80,13 @@ radarr.rinaldolee.com {
 
 sonarr.rinaldolee.com {
     reverse_proxy sonarr.apps:8989
+    tls {
+        dns cloudflare {env.CF_API_TOKEN}
+    }
+}
+
+draw.rinaldolee.com {
+    reverse_proxy draw.apps:80
     tls {
         dns cloudflare {env.CF_API_TOKEN}
     }

@@ -1,0 +1,15 @@
+version: "3.9"
+
+networks:
+  apps:
+    external: true
+
+services:
+  drawio:
+    image: jgraph/drawio
+    hostname: "overleaf"
+    stdin_open: true
+    tty: true
+    networks: 
+      - apps
+    user: root
