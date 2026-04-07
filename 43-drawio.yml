@@ -7,7 +7,7 @@ networks:
 services:
   drawio:
     image: jgraph/drawio
-    hostname: "overleaf"
+    hostname: "drawio"
     stdin_open: true
     tty: true
     networks: 
